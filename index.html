@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh Jain - Security Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #020f34;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-light);
+            transform: translateY(-1px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-info h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-info p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 6rem 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 6rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .company {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            padding: 2rem 2rem 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+        width: 250px;
+        height: 160px;
+        perspective: 1000px;
+        }
+
+        .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        }
+
+        .card:hover .card-inner {
+        transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        padding: 20px;
+        box-sizing: border-box;
+        }
+
+        .card-front {
+        background: #111827; /* Blue front */
+        color: white; /* White text */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .card-back {
+        background: #111827; /* Blue back */
+        color: white; /* White text */
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .cert-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 0.5rem;
+        }
+
+        .cert-id {
+        font-size: 0.95rem;
+        color: white;
+        } 
+
+        .cert-icon {
+        max-height: 96px;
+        max-width: 96px;
+        }
+
+        .cert-link {
+        text-decoration: none;
+        color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Saurabh Jain</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#certifications">Certificatons</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Hi, I'm Saurabh Jain</h1>
+                <div class="subtitle">Security Engineer</div>
+                <p>Security Enthusiast with 6+ years of expertise in VAPT, Red Teaming, Secure Code Review, and Threat Modeling across Mobile, Web Apps, APIs, and Cloud. Experienced in Bug Bounty management, compliance (ISO 27001), CIS Benchmarking and security automation.</p>
+                <div class="cta-buttons">
+                    <a href="#experience" class="btn btn-primary">
+                        <i class="fas fa-code"></i>
+                        Experience
+                    </a>
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-grid">
+                <div class="about-info fade-in">
+                    <h3>Who I Am</h3>
+                    <p>A cybersecurity professional with a strong background in application security, infrastructure hardening, and cloud security. Specialized in identifying and mitigating vulnerabilities, ensuring systems are secure, scalable, and compliant.</p> 
+                    <p>My experience spans secure SDLC implementation, red team assessments, and hands-on work with modern DevSecOps tools and practices.</p>
+                </div>
+                <div class="stats fade-in">
+                    <div class="stat">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">400+</span>
+                        <span class="stat-label">Penetration Testing Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Certifications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+<section class="certifications" id="certifications">
+    <div class="container">
+      <h2 class="section-title fade-in">Certifications</h2>
+      <div class="cert-card-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        
+          <!-- OSCP -->
+        <a href="https://www.credly.com/badges/dda52e90-2942-4be9-b9a5-da345154065f" class="card cert-link fade-in" target="_blank">
+            <div class="card-inner">
+            <div class="card-front">
+                <img src="https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png" alt="OSCP Badge" class="cert-icon" />
+            </div>
+            <div class="card-back">
+                <h3 class="cert-name">OSCP</h3>
+                <p class="cert-id">ID: OS-101-37862</p>
+            </div>
+            </div>
+        </a>
+        <!-- Azure Fundamentals -->
+        <a href="https://www.credly.com/badges/4aa0384e-4f40-4e68-a8c0-e2cbf86589c5/public_url" class="card cert-link fade-in" target="_blank">
+            <div class="card-inner">
+            <div class="card-front">
+                <img src="https://images.credly.com/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png" alt="Azure Badge" class="cert-icon" />
+            </div>
+            <div class="card-back">
+                <h3 class="cert-name">Azure Fundamentals</h3>
+                <p class="cert-id">ID: AZ-900</p>
+            </div>
+            </div>
+        </a>
+        
+        <!-- SC-900 -->
+        <a href="https://www.credly.com/badges/9f726062-e942-4115-8183-778923cea9f7" class="card cert-link fade-in" target="_blank">
+            <div class="card-inner">
+            <div class="card-front">
+                <img src="https://images.credly.com/images/fc1352af-87fa-4947-ba54-398a0e63322e/security-compliance-and-identity-fundamentals-600x600.png" alt="SC-900 Badge" class="cert-icon" />
+            </div>
+            <div class="card-back">
+                <h3 class="cert-name">SC-900</h3>
+                <p class="cert-id">ID: SC-900</p>
+            </div>
+            </div>
+        </a>
+        
+        <!-- SecOps Group -->
+        <a href="https://candidate.speedexam.net/certificate.aspx?SSTATE=am4131EniU8ntjp4bO5mXT5UoRS21Z0ISzoKdCj5jqLM/zdqiSP9j7hLuMlFl1wxr1N3pNnqW2tTon9axskI0mjZTWtYJKTiL+YsRYHixDo=" class="card cert-link fade-in" target="_blank">
+            <div class="card-inner">
+            <div class="card-front">
+                <img src="https://pentestingexams.com/wp-content/uploads/2023/01/cert-stamp-2.png" alt="SecOps Badge" class="cert-icon" />
+            </div>
+            <div class="card-back">
+                <h3 class="cert-name">Certified AppSec Practitioner</h3>
+                <p class="cert-id">ID: ID-6886377</p>
+            </div>
+            </div>
+        </a>
+        
+
+
+      </div>
+    </div>
+  </section>
+  
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3><i class="fab fa-react"></i> Infosec</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">VAPT</span>
+                        <span class="skill-tag">SAST</span>
+                        <span class="skill-tag">Source Code Review</span>
+                        <span class="skill-tag">DAST</span>
+                        <span class="skill-tag">Red Teaming</span>
+                        <span class="skill-tag">OSINT</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">Bash Scripting</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fade-in"></i> Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Threat Modelling</span>
+                        <span class="skill-tag">Design Reviews</span>
+                        <span class="skill-tag">REST</span>
+                        <span class="skill-tag">SOAP</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3><i class="fab fa-aws"></i> DevOps & Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <h3>Security Engineer</h3>
+                    <div class="company">ShyftLabs</div>
+                    <div class="duration">March 2025 - Present</div>
+                    <p>
+                        <ul>
+                            <li>Conducting VAPT for Web Applications, APIs and performing Secure Code Review activities for Web applications, APIs, & Servers</li>
+                            <li>Collaborating cross-functionally with engineering teams to resolve security issues and conducting sessions to strengthen the organization’s security posture.</li>
+                            <li>Performing CIS Benchmarking on AWS security metrics and parallely performing design reviews.</li>
+                        </ul>
+        
+                    </p>
+                    </div>
+                <div class="timeline-item fade-in">
+                    <h3>Security Engineer</h3>
+                    <div class="company">WebEngage</div>
+                    <div class="duration">April 2024 - March 2025</div>
+                    <p>
+                        <ul>
+                        <li>Conducted VAPT/Red Teaming and Code Review activities for Mobile, Web applications, APIs, & Servers with managing external vendors and supporting internal bug bounty programs.</li>
+                        <li>Collaborated cross-functionally with engineering teams to resolve security issues and conducting sessions to strengthen the organization’s security posture.</li>
+                        <li>Implemented security metrics to uphold ISMS policies while ensuring compliance with ISO 27001 and parallely addressing client Infosec queries.</li>
+                        <li>Managed client due diligence, TPRM activities, vendor security evaluations, and coordinating internal audits, ensuring timely closure of all ISO CAPA points.</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>Security Engineer</h3>
+                    <div class="company">Grab</div>
+                    <div class="duration">Feb 2022 - April 2024</div>
+                    <p>
+                        <ul>
+                        <li>Grab is a super-app for ride-hailing, food delivery, and digital payment services in SouthEast Asia.</li>
+                        <li>Partnered multiple tech-families for VAPT, SCR, SAST, Threat Modelling for Mobile and Web Applications, APIs, providing code level remedies to mitigate the identified vulnerabilities.</li>
+                        <li>Managed Bug Bounty Program and performed ticket handling, saving 1000+ man hours with delivering Annual Report to higher management for identified vulnerabilities & their closures.</li>
+                        <li>Handling Certificate Management via Mastercard Portal for timely renewal of certificates.</li>
+                        <li>Created Pentest Checklists, Tech Trainings for new joinees based on global security standards such as OWASP ASVS, MASVS, MSTG & WSTG.</li>
+                        <li>Proficient in working with microservices, AWS, secure SDLC, IAM, SSO, OAuth, RBAC, risk-based authentication.</li>
+                        </ul>
+                    </p>
+                    </div>
+                <div class="timeline-item fade-in">
+                    <h3>Information Security Engineer</h3>
+                    <div class="company">Zeta</div>
+                    <div class="duration">June 2021 - Feb 2022</div>
+                    <p>
+                        <ul>
+                        <li>Gained hands-on experience working in a product-based environment with active engagment with cross cross-functional teams, including engineering, to address security requirements.</li>
+                        <li>Developed workflows, documentation, and checklists to streamline V APT reporting & testing processes.</li>
+                        <li>Collaborated with the compliance team to uphold ISO 27001 standards and conducted third-party risk assessments.</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>Security Analyst</h3>
+                    <div class="company">Safe Security</div>
+                    <div class="duration">Jan 2019 - June 2021</div>
+                    <p>
+                        <ul>
+                            <li>Conducted VAPT/Red Teaming, DAST, and SAST testing on Mobile & Web Apps, APIs, Networks, and Servers, identifying risks based on CVSS standards.</li>
+                            <li>Performed Security Code Reviews (SCR) for mobile applications and Java-based web applications.</li>
+                            <li>Enhanced the Unified Control List (Pentest Checklist) by integrating & updating pentest controls, leveraging the MITRE ATT&CK framework.</li>
+                            <li>Proficient in Python & Shell scripting for automating redundant tasks and simulating attack scenarios.</li>
+                            <li>Designed and implemented onboarding technical training on Trello for new hires, streamlining the induction process</li>
+                          </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's Work Together</h2>
+            <div class="contact-content fade-in">
+                <p>I'm always interested in new opportunities and exciting projects. Whether you want to discuss a potential collaboration or just want to say hello, feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:saurabhj4in@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        saurabhj4in@gmail.com
+                    </a>
+                    <a href="#" class="contact-link">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Delhi, India
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/saurabh-jain-503991165/" aria-label="LinkedIn"><i class="fab fa-linkedin" width="40" height="40"></i></a>
+                <a href="https://github.com/jain6196" aria-label="GitHub"><i class="fab fa-github" width="40" height="40"></i></a>
+                <a href="https://x.com/saurabh_ja1n" aria-label="Twitter"><i class="fab fa-twitter" width="40" height="40"></i></a>
+                <a href="https://saurabh-jain.medium.com/" class="text-gray-400 hover:text-white" aria-label="Medium" target="_blank"><i class="fab fa-medium text-2xl" width="40" height="40"></i>    </a>
+                <a href="https://pentesterlab.com/profile/saurabh_ja1n" aria-label="PentesterLab" target="_blank"><img src="https://pentesterlab.com/favicon.ico" alt="PentesterLab" width="35" height="35"></a>
+                <a href="https://tryhackme.com/p/sjain" aria-label="TryHackMe" target="_blank"> <img src="https://tryhackme.com/favicon.svg" alt="TryHackMe" width="35" height="35"></a>
+  
+            </div>
+            <p>&copy; 2025 Saurabh Jain. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerOffset = 80;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Active navigation link
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Initial fade in for hero section
+        window.addEventListener('load', () => {
+            document.querySelector('.hero .fade-in').classList.add('visible');
+        });
+    </script>
+</body>
+</html>
