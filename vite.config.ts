@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 // vite.config.ts
 export default defineConfig({
-  base: '/saurabh-jain/', // 👈 must match your repo name
+  base: '/', // 👈 must match your repo name
   plugins: [react()],
 })
