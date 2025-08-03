@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -7,7 +7,6 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
-import SecuredCompanies from './components/SecuredCompanies';
 
 function App() {
   return (
